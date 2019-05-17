@@ -33,7 +33,7 @@ node {
               if (isUnix()) {
                 rmsg = sh returnStdout: true, script: "${toolbelt} force:org:create --definitionfile config/enterprise-scratch-def.json --json --setdefaultusername"
               }else{
-                   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:org:create --definitionfile config/project-scratch-def.json --json --setdefaultusername"
+                   rmsg = bat returnStdout: true, script: "sfdx force:org:create --definitionfile config/project-scratch-def.json --json --setdefaultusername"
               }
             printf rmsg
             println('Hello from a Job DSL script!')
@@ -57,7 +57,7 @@ node {
               if (isUnix()) {
                     rc = sh returnStatus: true, script: "\"${toolbelt}\" force:source:push --targetusername ${SFDC_USERNAME}"
               }else{
-                  rc = bat returnStatus: true, script: "\"${toolbelt}\" force:source:push --targetusername ${SFDC_USERNAME}"
+                  rc = bat returnStatus: true, script: "sfdx force:source:push --targetusername ${SFDC_USERNAME}"
               }
             if (rc != 0) {
                 error 'push failed'
